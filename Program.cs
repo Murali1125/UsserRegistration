@@ -7,6 +7,8 @@ using System.Text.RegularExpressions;
  * As a User need to enter a valid email - E.g. abc.xyz@bl.co.in - Email has 3 mandatory parts (abc, bl & co)
  * ->and 2 optional (xyz & in) with precise @ and . positions
  * As a User need to follow pre -defined Mobile Format - E.g. 91 9919819801 - Country code follow by space and 10 digit number
+ * As a User need to follow pre -defined Password rules. Rule1– minimum 8 Characters
+ * Rule2 – Should have at least 1 Upper Case
  * --------------------------------------------------------------------------------------------------------------------------*/
 namespace UserRegistration
 {
@@ -18,11 +20,12 @@ namespace UserRegistration
             string first_name = null,
                    last_name = null,
                    email = null,
-                   phone_number = null ;
+                   phone_number = null,
+                   password=null;
             Console.WriteLine("----***** Welcome To User Registration *****----");
             // creating object to the UserRegistration class
             UserRegistration obj_userregistaration = new UserRegistration();
-
+            /*
             // logic for first name
              while (first_name is null) 
                  first_name = obj_userregistaration.FristName();
@@ -32,13 +35,16 @@ namespace UserRegistration
             //logic for email
             while (email is null)
                 email = obj_userregistaration.Email();
-            
             while (phone_number is null)
                 phone_number = obj_userregistaration.PhoneNumber();
+    */
+            while (password is null)
+                password = obj_userregistaration.Password();
             Console.WriteLine("first name  : " + first_name) ;
             Console.WriteLine("last name  : " + last_name);
             Console.WriteLine("email  : " + email);
             Console.WriteLine("phone number   : " + phone_number);
+            Console.WriteLine("Password   :  " + password);
         }//end:  static void Main(string[] args)
     }//end : class Program
     public class UserRegistration
@@ -124,7 +130,7 @@ namespace UserRegistration
             string exp = "^[0-9]{2} [0-9]{10}$";
             // create object to Regex
             Regex re_phonenumber = new Regex(exp);
-            // check  email rules
+            // check  phone number rules
             if (re_phonenumber.IsMatch(phone_number))
             {
                 return phone_number;
@@ -134,7 +140,29 @@ namespace UserRegistration
                 Console.WriteLine("invalid input ");
                 return null;
             }
-            
         }//end: public int PhoneNumber()
+
+        // method for password validation
+        public string Password()
+        {
+            // variables
+            string password;
+            Console.WriteLine("enter password  \n :: Rule1: minimum 8 Characters");
+            password = Console.ReadLine();
+            // expression
+            string r2 = "[A-Z]";
+            // create object to Regex
+            Regex re_password = new Regex(r2);
+            // check  password  rules
+            if (password.Length >= 8 )
+            {
+                return password;
+            }// if (re_password.IsMatch(exp))
+            else
+            {
+                Console.WriteLine("invalid input ");
+                return null;
+            }
+        }// end:public string Password()
     }// end :public class UserRegistration
 }//end : namespace UserRegistration
