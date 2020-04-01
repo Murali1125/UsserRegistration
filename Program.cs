@@ -150,21 +150,21 @@ namespace UserRegistration
             Console.WriteLine("enter password  \n :: Rule1: minimum 8 Characters");
             password = Console.ReadLine();
             // expression
-            //string r2 = "[A-Z]{1,}";
+            string r2 = "[A-Z]{1,}";
             // create object to Regex
-            //Regex re_password = new Regex(r2);
+            Regex re_password = new Regex(r2);
             // check  password  rules
             if (password.Length >= 8 )
             {
-               // if (re_password.IsMatch(password))
-               // {
+                if (re_password.IsMatch(password))
+                {
                     return password;
-               /* }
+                }
                 else
                 {
                     Console.WriteLine("invalid input ");
                     return null;
-                } */
+                } 
                 
             }// if (re_password.IsMatch(exp))
             else
