@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
  * As a User need to follow pre -defined Password rules. Rule1– minimum 8 Characters
  * Rule2 – Should have at least 1 Upper Case
  * Rule3 - Should have at least 1 numeric number in the password
+ * Rule4 - Should have only one special charector
  * --------------------------------------------------------------------------------------------------------------------------*/
 namespace UserRegistration
 {
@@ -33,12 +34,13 @@ namespace UserRegistration
             // logic for last name
             while (last_name is null)
                  last_name = obj_userregistaration.LastName();
-             //logic for email
+            //logic for email
             while (email is null)
                 email = obj_userregistaration.Email();
+            // logic for phone number
             while (phone_number is null)
                 phone_number = obj_userregistaration.PhoneNumber();
-    
+            //logic for password
             while (password is null)
                 password = obj_userregistaration.Password();
             Console.WriteLine("first name  : " + first_name) ;
