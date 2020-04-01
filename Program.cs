@@ -26,7 +26,7 @@ namespace UserRegistration
             Console.WriteLine("----***** Welcome To User Registration *****----");
             // creating object to the UserRegistration class
             UserRegistration obj_userregistaration = new UserRegistration();
-           /* 
+        
             // logic for first name
             while (first_name is null) 
                  first_name = obj_userregistaration.FristName();
@@ -38,7 +38,7 @@ namespace UserRegistration
                 email = obj_userregistaration.Email();
             while (phone_number is null)
                 phone_number = obj_userregistaration.PhoneNumber();
-    */
+    
             while (password is null)
                 password = obj_userregistaration.Password();
             Console.WriteLine("first name  : " + first_name) ;
@@ -152,16 +152,25 @@ namespace UserRegistration
             password = Console.ReadLine();
             // expression
             string r2 = "[A-Z]{1,}",
-                   r3 = "[0-9]{1,}";
+                   r3 = "[0-9]{1,}",
+                   r4a = "[\\W]{1}",
+                   r4b = "[\\W]{2,}";
             // create object to Regex
             Regex re_psw_r2 = new Regex(r2);
             Regex re_psw_r3 = new Regex(r3);
+            Regex re_psw_r4a = new Regex(r4a);
+            Regex re_psw_r4b = new Regex(r4b);
             // check  password  rules
             if (password.Length >= 8 )
             {
-                if (re_psw_r2.IsMatch(password) && re_psw_r3.IsMatch(password))
+                // cheking password have a Capital letters && Number && Special charectors
+                if (re_psw_r2.IsMatch(password) && re_psw_r3.IsMatch(password) && re_psw_r4a.IsMatch(password))
                 {
-                    return password;
+                    // checking the password have 2 or more special charectors
+                    if (re_psw_r4b.IsMatch(password))
+                        return null;
+                    else
+                        return password;
                 }
                 else
                 {
