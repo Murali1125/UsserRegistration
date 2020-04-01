@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
  * As a User need to follow pre -defined Mobile Format - E.g. 91 9919819801 - Country code follow by space and 10 digit number
  * As a User need to follow pre -defined Password rules. Rule1– minimum 8 Characters
  * Rule2 – Should have at least 1 Upper Case
+ * Rule3 - Should have at least 1 numeric number in the password
  * --------------------------------------------------------------------------------------------------------------------------*/
 namespace UserRegistration
 {
@@ -25,7 +26,7 @@ namespace UserRegistration
             Console.WriteLine("----***** Welcome To User Registration *****----");
             // creating object to the UserRegistration class
             UserRegistration obj_userregistaration = new UserRegistration();
-            
+           /* 
             // logic for first name
             while (first_name is null) 
                  first_name = obj_userregistaration.FristName();
@@ -37,7 +38,7 @@ namespace UserRegistration
                 email = obj_userregistaration.Email();
             while (phone_number is null)
                 phone_number = obj_userregistaration.PhoneNumber();
-    
+    */
             while (password is null)
                 password = obj_userregistaration.Password();
             Console.WriteLine("first name  : " + first_name) ;
@@ -150,13 +151,15 @@ namespace UserRegistration
             Console.WriteLine("enter password  \n :: Rule1: minimum 8 Characters");
             password = Console.ReadLine();
             // expression
-            string r2 = "[A-Z]{1,}";
+            string r2 = "[A-Z]{1,}",
+                   r3 = "[0-9]{1,}";
             // create object to Regex
-            Regex re_password = new Regex(r2);
+            Regex re_psw_r2 = new Regex(r2);
+            Regex re_psw_r3 = new Regex(r3);
             // check  password  rules
             if (password.Length >= 8 )
             {
-                if (re_password.IsMatch(password))
+                if (re_psw_r2.IsMatch(password) && re_psw_r3.IsMatch(password))
                 {
                     return password;
                 }
