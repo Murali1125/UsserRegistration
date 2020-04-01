@@ -11,17 +11,15 @@ namespace UserRegistration
         static void Main(string[] args)
         {
             // variables
-            string first_name;
+            string first_name = null;
             Console.WriteLine("----***** Welcome To User Registration *****----");
             // creating object to the UserRegistration class
             UserRegistration obj_userregistaration = new UserRegistration();
 
             // logic for first name
-            first_name = obj_userregistaration.FristName();
-            if (first_name is null)
+            while (first_name is null) { 
                 first_name = obj_userregistaration.FristName();
-
-
+            }
             Console.WriteLine("first name  : " + first_name) ;
         }//end:  static void Main(string[] args)
     }//end : class Program
@@ -37,7 +35,7 @@ namespace UserRegistration
             Console.WriteLine("Enter first name \n  ::first name start with cap and has minimum 3 charecters");
             first_name = Console.ReadLine();
             // expression
-            string exp = "^[A-Z]{3,}";
+            string exp = "^[A-Z]{1,}..";
             // create object to Regex
             Regex re_firstName = new Regex(exp);
             // check  first name rules
