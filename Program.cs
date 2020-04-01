@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-/*--------------- Welcome to User Registration ------------------------------------------------------------
+/*--------------- Welcome to User Registration ------------------------------------------------------------------------------*
  * As a user u need to enter a valid first name  [ first name start with cap and has minimum 3 charecters ]
  * As a User need to enter a valid Last Name - [ Last name starts with Cap and has minimum 3 characters]
- * As a User need to enter a valid email - E.g. abc.xyz@bl.co.in - Email has 3 mandatory parts (abc, bl
-  ->& co) and 2 optional (xyz & in) with precise @ and . positions
- * --------------------------------------------------------------------------------------------------------*/
+ * As a User need to enter a valid email - E.g. abc.xyz@bl.co.in - Email has 3 mandatory parts (abc, bl & co)
+ * ->and 2 optional (xyz & in) with precise @ and . positions
+ * As a User need to follow pre -defined Mobile Format - E.g. 91 9919819801 - Country code follow by space and 10 digit number
+ * --------------------------------------------------------------------------------------------------------------------------*/
 namespace UserRegistration
 {
     class Program
@@ -16,24 +17,28 @@ namespace UserRegistration
             // variables
             string first_name = null,
                    last_name = null,
-                   email = null;
+                   email = null,
+                   phone_number = null ;
             Console.WriteLine("----***** Welcome To User Registration *****----");
             // creating object to the UserRegistration class
             UserRegistration obj_userregistaration = new UserRegistration();
 
             // logic for first name
-            while (first_name is null) 
-                first_name = obj_userregistaration.FristName();
-            // logic for last name
-            while (last_name is null)
-                last_name = obj_userregistaration.LastName();
+             while (first_name is null) 
+                 first_name = obj_userregistaration.FristName();
+             // logic for last name
+             while (last_name is null)
+                 last_name = obj_userregistaration.LastName();
             //logic for email
             while (email is null)
                 email = obj_userregistaration.Email();
-
+            
+            while (phone_number is null)
+                phone_number = obj_userregistaration.PhoneNumber();
             Console.WriteLine("first name  : " + first_name) ;
             Console.WriteLine("last name  : " + last_name);
             Console.WriteLine("email  : " + email);
+            Console.WriteLine("phone number   : " + phone_number);
         }//end:  static void Main(string[] args)
     }//end : class Program
     public class UserRegistration
@@ -90,7 +95,7 @@ namespace UserRegistration
         {
             //variable
             string email;
-            Console.WriteLine("Enter Last email id \n  :: email E.g :- abc.xyz@bl.com ");
+            Console.WriteLine("Enter email id \n  :: email E.g :- abc@bl.com ");
             email = Console.ReadLine();
             //expression
             string exp = "^[a-zA-Z0-9]*@[a-zA-Z0-9]*.[a-zA-Z0-9]{2,4}$";
@@ -99,7 +104,8 @@ namespace UserRegistration
             // check  email rules
             if (re_email.IsMatch(email))
             {
-                return email;
+                return email ;
+             
             }// if (re_email.IsMatch(email))
             else
             {
@@ -107,5 +113,28 @@ namespace UserRegistration
                 return null;
             }
         }//  end : public string Email()
+
+        // method for phone number validation
+        public string PhoneNumber() {
+            //variable
+            string phone_number;
+            Console.WriteLine("Enter  phone number \n  :: E.g -- 91 9919819801 - Country code follow by space and 10 digit number ");
+            phone_number = Console.ReadLine();
+            //expression
+            string exp = "^[0-9]{2} [0-9]{10}$";
+            // create object to Regex
+            Regex re_phonenumber = new Regex(exp);
+            // check  email rules
+            if (re_phonenumber.IsMatch(phone_number))
+            {
+                return phone_number;
+            }// if (re_phonenumber.IsMatch(exp))
+            else
+            {
+                Console.WriteLine("invalid input ");
+                return null;
+            }
+            
+        }//end: public int PhoneNumber()
     }// end :public class UserRegistration
 }//end : namespace UserRegistration
